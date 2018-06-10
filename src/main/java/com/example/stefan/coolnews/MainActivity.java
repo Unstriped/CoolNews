@@ -13,19 +13,17 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+
+// Fetches news from Firebase server
+// Server gets populated with Zapier with news from DN.se (rss feed)
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        mAuth = FirebaseAuth.getInstance();
 
         FetchNews();
     }
@@ -40,42 +38,23 @@ public class MainActivity extends AppCompatActivity {
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                System.out.println("katthatt");
+                Log.v(TAG, "Fetching News...");
                 for(DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     NewsContent nContent = singleSnapshot.getValue(NewsContent.class);
-                    System.out.println("------------------------------------------");
-                    System.out.println(nContent.getNewsPubDate());
-                    System.out.println(nContent.getNewsTitle());
-                    System.out.println(nContent.getNewsDescription());
-                    System.out.println(nContent.getNewsLink());
-                    System.out.println("------------------------------------------");
+
+                    Log.v(TAG, "------------------------------------------------------------------------------------");
+                    Log.v(TAG, nContent.getNewsPubDate());
+                    Log.v(TAG, nContent.getNewsTitle());
+                    Log.v(TAG, nContent.getNewsDescription());
+                    Log.v(TAG, nContent.getNewsLink());
+                    Log.v(TAG, "------------------------------------------------------------------------------------");
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                System.out.println("Error :(");
             }
         });
-
-
-        /*Query query = myRef.child("news").limitToLast(3);
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                System.out.println("något händer");
-                for(DataSnapshot singleSnapshot : dataSnapshot.getChildren()){
-                    NewsContent nContent = new NewsContent();
-                    nContent.setNewsTitle(singleSnapshot.child("newsTitle").getValue(NewsContent.class).getNewsTitle());
-
-                    //Log.d(TAG, "showdata: title: " + nContent.getNewsTitle());
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });*/
     }
 }
