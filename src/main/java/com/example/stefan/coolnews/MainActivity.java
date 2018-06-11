@@ -10,9 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -43,13 +41,6 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.RED));
         mContext = getApplicationContext();
-
-        //mRecyclerView = findViewById(R.id.recyclerView);
-        //mSwipeLayout = findViewById(R.id.swipeRefreshLayout);
-       /* mFeedPubDateTextView = findViewById(R.id.newsPubDate);
-        mFeedTitleTextView = findViewById(R.id.newsTitle);
-        mFeedDescriptionTextView = findViewById(R.id.newsDescription);
-        mFeedLinkTextView = findViewById(R.id.newsLink);*/
 
         FetchNews();
     }
