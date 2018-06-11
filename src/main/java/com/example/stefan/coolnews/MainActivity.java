@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
                 LinearLayout myRoot = (LinearLayout) findViewById(R.id.my_root);
                 LinearLayout a = new LinearLayout(mContext);
-                a.removeAllViews();
+                myRoot.removeAllViews();
                 a.setOrientation(LinearLayout.VERTICAL);
 
                 Log.v(TAG, "Fetching News...");
@@ -96,10 +96,10 @@ public class MainActivity extends AppCompatActivity {
                     linkView.setPadding(0,0,0,30);
                     linkView.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));
 
-                    a.addView(dateView);
-                    a.addView(titleView);
-                    a.addView(descView);
-                    a.addView(linkView);
+                    a.addView(dateView,0);
+                    a.addView(titleView,1);
+                    a.addView(descView,2);
+                    a.addView(linkView,3);
                 }
 
                 myRoot.addView(a);
