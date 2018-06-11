@@ -58,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
 
@@ -67,8 +69,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+
                 LinearLayout myRoot = (LinearLayout) findViewById(R.id.my_root);
                 LinearLayout a = new LinearLayout(mContext);
+                a.removeAllViews();
                 a.setOrientation(LinearLayout.VERTICAL);
 
                 Log.v(TAG, "Fetching News...");
@@ -105,13 +109,6 @@ public class MainActivity extends AppCompatActivity {
                     a.addView(titleView);
                     a.addView(descView);
                     a.addView(linkView);
-
-
-
-                   /* mFeedPubDateTextView.setText(date);
-                    mFeedTitleTextView.setText(title);
-                    mFeedDescriptionTextView.setText(description);
-                    mFeedLinkTextView.setText(link);*/
                 }
 
                 myRoot.addView(a);
